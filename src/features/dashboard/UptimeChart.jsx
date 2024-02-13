@@ -9,6 +9,7 @@ import {
     YAxis,
 } from "recharts";
 import { ChartBox } from "./AreaChartStyle";
+import { formatDateString } from "../../utils/datetimeHelper";
 
 function UptimeChart({ summaries }) {
     const data = summaries.map((summary) => ({
@@ -34,11 +35,11 @@ function UptimeChart({ summaries }) {
         <ChartBox>
             <Heading as="h2">
                 {summaries.length > 1 &&
-                    `Uptime overall from ${data.at(-1).label} to ${
-                        data.at(0).label
-                    }`}
+                    `Uptime overall from ${formatDateString(
+                        data.at(-1).label
+                    )} to ${formatDateString(data.at(0).label)}`}
                 {summaries.length === 1 &&
-                    `Uptime overall on ${data.at(0).label}`}
+                    `Uptime overall on ${formatDateString(data.at(0).label)}`}
             </Heading>
 
             <ResponsiveContainer

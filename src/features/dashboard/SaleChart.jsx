@@ -9,6 +9,7 @@ import {
     YAxis,
 } from "recharts";
 import { ChartBox } from "./AreaChartStyle";
+import { formatDateString } from "../../utils/datetimeHelper";
 
 function SalesChart({ summaries }) {
     const data = summaries.map((summary) => ({
@@ -29,10 +30,11 @@ function SalesChart({ summaries }) {
         <ChartBox>
             <Heading as="h2">
                 {summaries.length > 1 &&
-                    `Total sales from ${data.at(-1).label} to ${
-                        data.at(0).label
-                    }`}
-                {summaries.length === 1 && `Total sales on ${data.at(0).label}`}
+                    `Total sales from ${formatDateString(
+                        data.at(-1).label
+                    )} to ${formatDateString(data.at(0).label)}`}
+                {summaries.length === 1 &&
+                    `Total sales on ${formatDateString(data.at(0).label)}`}
             </Heading>
 
             <ResponsiveContainer
