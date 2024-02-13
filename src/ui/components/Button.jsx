@@ -37,10 +37,9 @@ const variations = {
             background-color: var(--color-secondary-600);
         }
     `,
-    normal: css`
+    icon: css`
         color: var(--color-grey-600);
         background-color: var(--color-grey-0);
-        border: 1px solid var(--color-grey-200);
 
         &:hover {
             background-color: var(--color-grey-50);

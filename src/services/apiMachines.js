@@ -34,3 +34,12 @@ export async function createMachine(machine) {
 
     return { data };
 }
+
+export async function deleteMachine(id) {
+    const { error } = await supabase.from("machines").delete().eq("id", id);
+
+    if (error) {
+        console.error(error);
+        throw new Error("Failed to delete machine");
+    }
+}
