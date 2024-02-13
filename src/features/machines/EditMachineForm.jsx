@@ -1,6 +1,9 @@
-import { getTodayString, formatTimeString } from "../../utils/datetimeHelper";
+import {
+    getTodayString,
+    formatTimeString,
+    TIME_PATTERN,
+} from "../../utils/datetimeHelper";
 import { useForm } from "react-hook-form";
-import { FaMugHot, FaTemperatureArrowDown } from "react-icons/fa6";
 import { useUpdateMachine } from "./hooks/useUpdateMachine";
 import Button from "../../ui/components/Button";
 import Heading from "../../ui/components/Heading";
@@ -46,6 +49,7 @@ function EditMachineForm({ machine, onCloseModal }) {
                 <Input
                     type="text"
                     id="name"
+                    maxLength={100}
                     disabled={isUpdating}
                     {...register("name", {
                         required: "This field is required.",
@@ -92,6 +96,11 @@ function EditMachineForm({ machine, onCloseModal }) {
                         defaultValue="00:00"
                         {...register("openTime", {
                             required: "This field is required.",
+                            pattern: {
+                                value: TIME_PATTERN,
+                                message:
+                                    "Invalid time format. Please use hh:mm",
+                            },
                         })}
                     />
                     <span>Close: </span>
@@ -102,9 +111,19 @@ function EditMachineForm({ machine, onCloseModal }) {
                         defaultValue="00:00"
                         {...register("closeTime", {
                             required: "This field is required.",
+                            pattern: {
+                                value: TIME_PATTERN,
+                                message:
+                                    "Invalid time format. Please use hh:mm",
+                            },
                         })}
                     />
                 </InputWrapper>
+                {(errors?.openTime?.message || errors?.closeTime?.message) && (
+                    <Error>
+                        {errors.openTime.message || errors.closeTime.message}
+                    </Error>
+                )}
             </FormRow>
             <FormRow>
                 <Label htmlFor="installedDate">Installed Date</Label>
@@ -119,12 +138,12 @@ function EditMachineForm({ machine, onCloseModal }) {
                     <Error>{errors.installedDate.message}</Error>
                 )}
             </FormRow>
-
             <FormRow>
                 <Label htmlFor="address">Address</Label>
                 <Input
                     type="text"
                     id="address"
+                    maxLength={255}
                     disabled={isUpdating}
                     {...register("address", {
                         required: "This field is required",
@@ -134,7 +153,6 @@ function EditMachineForm({ machine, onCloseModal }) {
                     <Error>{errors.address.message}</Error>
                 )}
             </FormRow>
-
             <FormRow>
                 <Label htmlFor="city">City</Label>
                 <Input
@@ -163,7 +181,6 @@ function EditMachineForm({ machine, onCloseModal }) {
                     <Error>{errors.country.message}</Error>
                 )}
             </FormRow>
-
             <FormRow>
                 <Button
                     variation="normal"

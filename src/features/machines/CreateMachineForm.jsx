@@ -1,6 +1,7 @@
 import {
     generateTimeOptions,
     getTodayString,
+    TIME_PATTERN,
 } from "../../utils/datetimeHelper";
 import { useForm } from "react-hook-form";
 import { DEFAULT_MACHINE_CONFIG } from "../../utils/constants";
@@ -29,6 +30,8 @@ function CreateMachineForm({ onCloseModal }) {
         defaultValues: DEFAULT_MACHINE_CONFIG,
     });
 
+    console.log(errors);
+
     function onSubmit(data) {
         createMachine(data, {
             onSuccess: () => {
@@ -48,6 +51,7 @@ function CreateMachineForm({ onCloseModal }) {
                 <Input
                     type="text"
                     id="name"
+                    maxLength={100}
                     disabled={isCreating}
                     {...register("name", {
                         required: "This field is required.",
@@ -94,6 +98,11 @@ function CreateMachineForm({ onCloseModal }) {
                         defaultValue="00:00"
                         {...register("openTime", {
                             required: "This field is required.",
+                            pattern: {
+                                value: TIME_PATTERN,
+                                message:
+                                    "Invalid time format. Please use hh:mm",
+                            },
                         })}
                     />
                     {/* <Select
@@ -110,6 +119,11 @@ function CreateMachineForm({ onCloseModal }) {
                         defaultValue="00:00"
                         {...register("closeTime", {
                             required: "This field is required.",
+                            pattern: {
+                                value: TIME_PATTERN,
+                                message:
+                                    "Invalid time format. Please use hh:mm",
+                            },
                         })}
                     />
                     {/* <Select
@@ -119,6 +133,11 @@ function CreateMachineForm({ onCloseModal }) {
                         {...register("closeTime")}
                     ></Select> */}
                 </InputWrapper>
+                {(errors?.openTime?.message || errors?.closeTime?.message) && (
+                    <Error>
+                        {errors.openTime.message || errors.closeTime.message}
+                    </Error>
+                )}
             </FormRow>
             <FormRow>
                 <Label htmlFor="installedDate">Installed Date</Label>
@@ -138,6 +157,7 @@ function CreateMachineForm({ onCloseModal }) {
                 <Input
                     type="text"
                     id="address"
+                    maxLength={255}
                     disabled={isCreating}
                     {...register("address", {
                         required: "This field is required",
