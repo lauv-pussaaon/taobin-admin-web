@@ -3,10 +3,10 @@ import { FaMugHot, FaTemperatureArrowDown } from "react-icons/fa6";
 import { useUpdateMachine } from "./hooks/useUpdateMachine";
 import Button from "../../ui/components/Button";
 import Heading from "../../ui/components/Heading";
+import Input from "../../ui/components/Input";
 import {
     Form,
     FormRow,
-    Input,
     InputWrapper,
     Label,
     Error,

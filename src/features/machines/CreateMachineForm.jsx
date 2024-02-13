@@ -8,11 +8,11 @@ import { DEFAULT_MACHINE_CONFIG } from "../../utils/constants";
 import { useCreateMachine } from "./hooks/useCreateMachine";
 import Button from "../../ui/components/Button";
 import Heading from "../../ui/components/Heading";
+import Input from "../../ui/components/Input";
 import Select from "../../ui/components/Select";
 import {
     Form,
     FormRow,
-    Input,
     InputWrapper,
     Label,
     Error,
