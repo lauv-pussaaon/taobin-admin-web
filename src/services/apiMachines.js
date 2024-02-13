@@ -35,6 +35,22 @@ export async function createMachine(machine) {
     return { data };
 }
 
+export async function updateMachine(machine) {
+    const { data, error } = await supabase
+        .from("machines")
+        .update({ ...machine })
+        .eq("id", machine.id)
+        .select()
+        .single();
+
+    if (error) {
+        console.error(error);
+        throw new Error("Failed to update machine");
+    }
+
+    return data;
+}
+
 export async function deleteMachine(id) {
     const { error } = await supabase.from("machines").delete().eq("id", id);
 

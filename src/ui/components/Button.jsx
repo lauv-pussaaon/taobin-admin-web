@@ -40,7 +40,6 @@ const variations = {
     icon: css`
         color: var(--color-grey-600);
         background-color: var(--color-grey-0);
-
         &:hover {
             background-color: var(--color-grey-50);
         }

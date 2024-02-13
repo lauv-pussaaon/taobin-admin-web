@@ -4,16 +4,19 @@ import Table from "../../ui/components/Table";
 import Modal from "../../ui/components/Modal";
 import ConfirmDelete from "../../ui/components/ConfirmDelete";
 import { useDeleteMachine } from "./hooks/useDeleteMachine";
-import { FaRegTrashCan } from "react-icons/fa6";
+import { FaRegTrashCan, FaPen } from "react-icons/fa6";
 import Button from "../../ui/components/Button";
+import Group from "../../ui/components/Group";
+import EditMachineForm from "./EditMachineForm";
 
 const BasedColumn = styled.div`
     font-size: 1.6rem;
     color: var(--color-grey-600);
 `;
 
-function MachineRow({
-    machine: {
+function MachineRow({ machine }) {
+    const { isDeleting, deleteMachine } = useDeleteMachine();
+    const {
         id,
         name,
         openTime,
@@ -22,9 +25,7 @@ function MachineRow({
         lastCheckupDate,
         lowStockItems,
         outStockItems,
-    },
-}) {
-    const { isDeleting, deleteMachine } = useDeleteMachine();
+    } = machine;
 
     return (
         <Table.Row role="row">
@@ -39,11 +40,21 @@ function MachineRow({
             </BasedColumn>
             <BasedColumn>
                 <Modal>
-                    <Modal.Opener modalName="delete-machine">
-                        <Button variation="icon">
-                            <FaRegTrashCan />
-                        </Button>
-                    </Modal.Opener>
+                    <Group type="horizontal-left">
+                        <Modal.Opener modalName="update-machine">
+                            <Button variation="icon" size="small">
+                                <FaPen />
+                            </Button>
+                        </Modal.Opener>
+                        <Modal.Opener modalName="delete-machine">
+                            <Button variation="icon" size="small">
+                                <FaRegTrashCan />
+                            </Button>
+                        </Modal.Opener>
+                    </Group>
+                    <Modal.Window name="update-machine">
+                        <EditMachineForm machine={machine} />
+                    </Modal.Window>
                     <Modal.Window name="delete-machine">
                         <ConfirmDelete
                             resourceName={`machine: ${name}`}
