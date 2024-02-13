@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import StatSection from "./StatSection";
 import Spinner from "../../ui/components/Spinner";
+import SalesChart from "./SaleChart";
 
 const StyledDashboardLayout = styled.div`
     display: grid;
@@ -23,6 +24,7 @@ function DashboardLayout() {
     return (
         <StyledDashboardLayout>
             <StatSection summaries={slicedSummaries} />
+            <SalesChart summaries={slicedSummaries} />
         </StyledDashboardLayout>
     );
 }
