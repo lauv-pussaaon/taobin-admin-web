@@ -57,6 +57,8 @@ To deploy the Taobin Admin application, follow these steps:
 npm run build
 ```
 
+2. Follow your hosting provider's instructions to deploy the built application.
+
 ## Note
 
 -   Pre-requisite: Ensure your environment is properly configured for Node.js development.
