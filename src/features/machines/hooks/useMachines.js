@@ -9,13 +9,16 @@ export function useMachines() {
         ? Number(searchParams.get("page"))
         : 1;
 
+    const searchTerm = searchParams.get("term")
+        ? searchParams.get("term")
+        : null;
+
     const { isLoading, data: { data: machines, count: total } = {} } = useQuery(
         {
-            queryFn: () => getMachines(page),
-            queryKey: ["machines", page],
+            queryFn: () => getMachines(page, searchTerm),
+            queryKey: ["machines", page, searchTerm],
         }
     );
 
-    console.log(total);
     return { isLoading, machines, total };
 }

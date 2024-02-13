@@ -3,9 +3,6 @@ import Spinner from "../../ui/components/Spinner";
 import Table from "../../ui/components/Table";
 import MachineRow from "./MachineRow";
 import Pagination from "../../ui/components/Pagination";
-import Button from "../../ui/components/Button";
-import Modal from "../../ui/components/Modal";
-import CreateMachineForm from "./CreateMachineForm";
 
 function MachineList() {
     const { isLoading, machines, total } = useMachines();
@@ -35,16 +32,6 @@ function MachineList() {
                     <Pagination total_rows={total} />
                 </Table.Footer>
             </Table>
-            <div>
-                <Modal>
-                    <Modal.Opener modalName="new-machine">
-                        <Button>Register New Machine</Button>
-                    </Modal.Opener>
-                    <Modal.Window name="new-machine">
-                        <CreateMachineForm />
-                    </Modal.Window>
-                </Modal>
-            </div>
         </>
     );
 }
