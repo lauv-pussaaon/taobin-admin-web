@@ -4,7 +4,6 @@ import {
 } from "../../utils/datetimeHelper";
 import { useForm } from "react-hook-form";
 import { DEFAULT_MACHINE_CONFIG } from "../../utils/constants";
-import { FaMugHot, FaTemperatureArrowDown } from "react-icons/fa6";
 import { useCreateMachine } from "./hooks/useCreateMachine";
 import Button from "../../ui/components/Button";
 import Heading from "../../ui/components/Heading";
@@ -56,7 +55,6 @@ function CreateMachineForm({ onCloseModal }) {
                 />
                 {errors?.name?.message && <Error>{errors.name.message}</Error>}
             </FormRow>
-
             <FormRow>
                 <Label htmlFor="status-active">Status</Label>
                 <InputWrapper>
@@ -123,44 +121,6 @@ function CreateMachineForm({ onCloseModal }) {
                 </InputWrapper>
             </FormRow>
             <FormRow>
-                <Label htmlFor="coldTemp">Cold Menu Temperature</Label>
-                <InputWrapper>
-                    <FaTemperatureArrowDown />
-                    <Input
-                        type="text"
-                        size="small"
-                        id="coldTemp"
-                        disabled={isCreating}
-                        {...register("coldTemp", {
-                            required: "This field is required.",
-                        })}
-                    />
-                    <span>celcius</span>
-                </InputWrapper>
-                {errors?.coldTemp?.message && (
-                    <Error>{errors.coldTemp.message}</Error>
-                )}
-            </FormRow>
-            <FormRow>
-                <Label htmlFor="hotTemp">Hot Menu Temperature</Label>
-                <InputWrapper>
-                    <FaMugHot />
-                    <Input
-                        type="text"
-                        size="small"
-                        id="hotTemp"
-                        disabled={isCreating}
-                        {...register("hotTemp", {
-                            required: "This field is required.",
-                        })}
-                    />
-                    <span>celcius</span>
-                </InputWrapper>
-                {errors?.hotTemp?.message && (
-                    <Error>{errors.hotTemp.message}</Error>
-                )}
-            </FormRow>
-            <FormRow>
                 <Label htmlFor="installedDate">Installed Date</Label>
                 <Input
                     type="date"
@@ -173,7 +133,6 @@ function CreateMachineForm({ onCloseModal }) {
                     <Error>{errors.installedDate.message}</Error>
                 )}
             </FormRow>
-
             <FormRow>
                 <Label htmlFor="address">Address</Label>
                 <Input
@@ -188,7 +147,6 @@ function CreateMachineForm({ onCloseModal }) {
                     <Error>{errors.address.message}</Error>
                 )}
             </FormRow>
-
             <FormRow>
                 <Label htmlFor="city">City</Label>
                 <Input
@@ -217,7 +175,6 @@ function CreateMachineForm({ onCloseModal }) {
                     <Error>{errors.country.message}</Error>
                 )}
             </FormRow>
-
             <FormRow>
                 <Button
                     variation="normal"

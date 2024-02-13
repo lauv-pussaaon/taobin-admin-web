@@ -53,7 +53,6 @@ function EditMachineForm({ machine, onCloseModal }) {
                 />
                 {errors?.name?.message && <Error>{errors.name.message}</Error>}
             </FormRow>
-
             <FormRow>
                 <Label htmlFor="status-active">Status</Label>
                 <InputWrapper>
@@ -106,45 +105,6 @@ function EditMachineForm({ machine, onCloseModal }) {
                         })}
                     />
                 </InputWrapper>
-            </FormRow>
-
-            <FormRow>
-                <Label htmlFor="coldTemp">Cold Menu Temperature</Label>
-                <InputWrapper>
-                    <FaTemperatureArrowDown />
-                    <Input
-                        type="text"
-                        size="small"
-                        id="coldTemp"
-                        disabled={isUpdating}
-                        {...register("coldTemp", {
-                            required: "This field is required.",
-                        })}
-                    />
-                    <span>celcius</span>
-                </InputWrapper>
-                {errors?.coldTemp?.message && (
-                    <Error>{errors.coldTemp.message}</Error>
-                )}
-            </FormRow>
-            <FormRow>
-                <Label htmlFor="hotTemp">Hot Menu Temperature</Label>
-                <InputWrapper>
-                    <FaMugHot />
-                    <Input
-                        type="text"
-                        size="small"
-                        id="hotTemp"
-                        disabled={isUpdating}
-                        {...register("hotTemp", {
-                            required: "This field is required.",
-                        })}
-                    />
-                    <span>celcius</span>
-                </InputWrapper>
-                {errors?.hotTemp?.message && (
-                    <Error>{errors.hotTemp.message}</Error>
-                )}
             </FormRow>
             <FormRow>
                 <Label htmlFor="installedDate">Installed Date</Label>

@@ -4,10 +4,11 @@ import Table from "../../ui/components/Table";
 import Modal from "../../ui/components/Modal";
 import ConfirmDelete from "../../ui/components/ConfirmDelete";
 import { useDeleteMachine } from "./hooks/useDeleteMachine";
-import { FaRegTrashCan, FaPen } from "react-icons/fa6";
+import { FaRegTrashCan, FaPen, FaGear } from "react-icons/fa6";
 import Button from "../../ui/components/Button";
 import Group from "../../ui/components/Group";
 import EditMachineForm from "./EditMachineForm";
+import EditMachineConfig from "./EditMachineConfig";
 
 const BasedColumn = styled.div`
     font-size: 1.6rem;
@@ -46,6 +47,11 @@ function MachineRow({ machine }) {
                                 <FaPen />
                             </Button>
                         </Modal.Opener>
+                        <Modal.Opener modalName="config-machine">
+                            <Button variation="icon" size="small">
+                                <FaGear />
+                            </Button>
+                        </Modal.Opener>
                         <Modal.Opener modalName="delete-machine">
                             <Button variation="icon" size="small">
                                 <FaRegTrashCan />
@@ -54,6 +60,9 @@ function MachineRow({ machine }) {
                     </Group>
                     <Modal.Window name="update-machine">
                         <EditMachineForm machine={machine} />
+                    </Modal.Window>
+                    <Modal.Window name="config-machine">
+                        <EditMachineConfig machine={machine} />
                     </Modal.Window>
                     <Modal.Window name="delete-machine">
                         <ConfirmDelete
