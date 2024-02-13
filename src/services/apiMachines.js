@@ -2,7 +2,10 @@ import { PAGE_SIZE } from "../utils/constants";
 import supabase from "./supabase";
 
 export async function getMachines(page, searchTerm) {
-    let query = supabase.from("machines").select("*", { count: "exact" });
+    let query = supabase
+        .from("machines")
+        .select("*", { count: "exact" })
+        .order("id", { ascending: true });
 
     if (page) {
         const from = (page - 1) * PAGE_SIZE;
