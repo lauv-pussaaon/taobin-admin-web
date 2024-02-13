@@ -5,6 +5,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Dashboard from "./pages/Dashboard";
 import Machines from "./pages/Machines";
 import AppLayout from "./ui/layouts/AppLayout";
+import Login from "./pages/Login";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -28,6 +29,7 @@ function App() {
                         <Route path="dashboard" element={<Dashboard />} />
                         <Route path="machines" element={<Machines />} />
                     </Route>
+                    <Route path="login" element={<Login />} />
                 </Routes>
             </BrowserRouter>
 
