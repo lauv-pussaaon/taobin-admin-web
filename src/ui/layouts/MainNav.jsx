@@ -1,6 +1,10 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { FaChartSimple, FaCube } from "react-icons/fa6";
+import {
+    FaChartSimple,
+    FaCube,
+    FaArrowRightFromBracket,
+} from "react-icons/fa6";
 
 const NavList = styled.ul`
     display: flex;
@@ -65,6 +69,12 @@ function MainNav() {
                     <StyledLink to="/machines">
                         <FaCube />
                         <span>Machines</span>
+                    </StyledLink>
+                </li>
+                <li>
+                    <StyledLink to="/login">
+                        <FaArrowRightFromBracket />
+                        <span>Logout</span>
                     </StyledLink>
                 </li>
             </NavList>
