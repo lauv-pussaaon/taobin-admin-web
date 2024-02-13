@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Machines from "./pages/Machines";
 import AppLayout from "./ui/layouts/AppLayout";
 import Login from "./pages/Login";
+import PageNotFound from "./pages/PageNotFound";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -30,6 +31,7 @@ function App() {
                         <Route path="machines" element={<Machines />} />
                     </Route>
                     <Route path="login" element={<Login />} />
+                    <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </BrowserRouter>
 
