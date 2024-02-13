@@ -1,15 +1,10 @@
-import {
-    generateTimeOptions,
-    getTodayString,
-    TIME_PATTERN,
-} from "../../utils/datetimeHelper";
+import { getTodayString, TIME_PATTERN } from "../../utils/datetimeHelper";
 import { useForm } from "react-hook-form";
 import { DEFAULT_MACHINE_CONFIG } from "../../utils/constants";
 import { useCreateMachine } from "./hooks/useCreateMachine";
 import Button from "../../ui/components/Button";
 import Heading from "../../ui/components/Heading";
 import Input from "../../ui/components/Input";
-import Select from "../../ui/components/Select";
 import {
     Form,
     FormRow,
@@ -30,8 +25,6 @@ function CreateMachineForm({ onCloseModal }) {
         defaultValues: DEFAULT_MACHINE_CONFIG,
     });
 
-    console.log(errors);
-
     function onSubmit(data) {
         createMachine(data, {
             onSuccess: () => {
@@ -40,8 +33,6 @@ function CreateMachineForm({ onCloseModal }) {
             },
         });
     }
-
-    // const timeOptions = generateTimeOptions();
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -105,12 +96,6 @@ function CreateMachineForm({ onCloseModal }) {
                             },
                         })}
                     />
-                    {/* <Select
-                        id="openTime"
-                        disabled={isCreating}
-                        options={timeOptions}
-                        {...register("openTime")}
-                    ></Select> */}
                     <span>Close: </span>
                     <Input
                         type="text"
@@ -126,12 +111,6 @@ function CreateMachineForm({ onCloseModal }) {
                             },
                         })}
                     />
-                    {/* <Select
-                        id="closeTime"
-                        disabled={isCreating}
-                        options={timeOptions}
-                        {...register("closeTime")}
-                    ></Select> */}
                 </InputWrapper>
                 {(errors?.openTime?.message || errors?.closeTime?.message) && (
                     <Error>
