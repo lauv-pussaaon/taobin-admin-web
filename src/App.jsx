@@ -1,5 +1,12 @@
+import GlobalStyles from "./styles/GlobalStyles";
+
 function App() {
-    return <div>Taobin</div>;
+    return (
+        <>
+            <GlobalStyles />
+            <div>Taobin</div>
+        </>
+    );
 }
 
 export default App;
