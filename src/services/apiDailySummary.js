@@ -5,7 +5,8 @@ export async function getDailySummary() {
     const { data, error } = await supabase
         .from("dailySummary")
         .select("*")
-        .lte("processedDate", getYesterday());
+        .lte("processedDate", getYesterday())
+        .order("processedDate", { ascending: false });
 
     if (error) {
         console.error(error);

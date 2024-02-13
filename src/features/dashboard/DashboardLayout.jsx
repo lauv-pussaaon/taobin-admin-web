@@ -1,6 +1,7 @@
+import { useDailySummaries } from "./hooks/useDailySummaries";
+import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import StatSection from "./StatSection";
-import { useDailySummaries } from "./hooks/useDailySummaries";
 import Spinner from "../../ui/components/Spinner";
 
 const StyledDashboardLayout = styled.div`
@@ -12,11 +13,16 @@ const StyledDashboardLayout = styled.div`
 
 function DashboardLayout() {
     const { isLoading, summaries } = useDailySummaries();
+    const [searchParams] = useSearchParams();
 
     if (isLoading) return <Spinner />;
+
+    const days = searchParams.get("last") || null;
+    const slicedSummaries = days ? summaries.slice(0, days) : summaries;
+
     return (
         <StyledDashboardLayout>
-            <StatSection summaries={summaries} />
+            <StatSection summaries={slicedSummaries} />
         </StyledDashboardLayout>
     );
 }
