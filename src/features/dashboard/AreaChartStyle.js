@@ -4,9 +4,8 @@ export const DashboardBox = styled.div`
     background-color: var(--color-primary-100);
     border: 1px solid var(--color-grey-100);
     border-radius: var(--border-radius-md);
-    min-height: 400px;
 
-    padding: 3.2rem;
+    padding: 1.6rem 3.2rem;
 
     display: flex;
     flex-direction: column;
@@ -14,6 +13,7 @@ export const DashboardBox = styled.div`
 `;
 
 export const ChartBox = styled(DashboardBox)`
+    /* apply to parent grid in dashbordlayout */
     grid-column: 1 / -1;
 
     /* Hack to change grid line colors */

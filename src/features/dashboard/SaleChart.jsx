@@ -36,7 +36,7 @@ function SalesChart({ summaries }) {
             </Heading>
 
             <ResponsiveContainer
-                height={300}
+                height={250}
                 width="95%"
                 style={{ margin: "1rem" }}
             >

@@ -42,16 +42,11 @@ function UptimeChart({ summaries }) {
             </Heading>
 
             <ResponsiveContainer
-                height={300}
+                height={250}
                 width="95%"
                 style={{ margin: "1rem" }}
             >
-                <LineChart
-                    width={730}
-                    height={250}
-                    data={data}
-                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                >
+                <LineChart data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
                         dataKey="processedDate"
