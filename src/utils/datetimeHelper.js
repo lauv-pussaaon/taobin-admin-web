@@ -1,6 +1,10 @@
 import { parseISO, format, parse } from "date-fns";
 
+export const TIME_PATTERN = /^([01]\d|2[0-3]):([0-5]\d)$/;
+
 export function formatDateString(dateStr, formatStr = "d MMMM yyyy") {
+    if (!dateStr) return null;
+
     const date = parseISO(dateStr);
     const formattedDate = format(date, formatStr);
 
@@ -8,6 +12,8 @@ export function formatDateString(dateStr, formatStr = "d MMMM yyyy") {
 }
 
 export function formatTimeString(timeStr, formatStr = "HH:mm") {
+    if (!timeStr) return null;
+
     const time = parse(timeStr, "HH:mm:ss", new Date());
     const formattedTime = format(time, formatStr);
 
@@ -17,7 +23,7 @@ export function formatTimeString(timeStr, formatStr = "HH:mm") {
 export function getTodayString() {
     const today = new Date();
     const yyyy = today.getFullYear();
-    let mm = today.getMonth() + 1; // Months start at 0!
+    let mm = today.getMonth() + 1; // Months start at 0
     let dd = today.getDate();
 
     // Add leading zeros to month and day if needed

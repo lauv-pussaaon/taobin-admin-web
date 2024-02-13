@@ -35,7 +35,9 @@ function MachineRow({ machine }) {
                 {formatTimeString(openTime)} - {formatTimeString(closeTime)}
             </BasedColumn>
             <BasedColumn>{status}</BasedColumn>
-            <BasedColumn>{formatDateString(lastCheckupDate)}</BasedColumn>
+            <BasedColumn>
+                {formatDateString(lastCheckupDate) || "--"}
+            </BasedColumn>
             <BasedColumn>
                 {lowStockItems} / {outStockItems}
             </BasedColumn>
