@@ -12,9 +12,17 @@ Taobin Admin is an administrative console designed to monitor overall sales, tic
 
 [Link to demo](https://taobin-admin-lauv-test.netlify.app)
 
+## Framework & Modules
+
+-   React with Vite
+-   React Query
+-   Recharts
+-   Styled Components
+-   Supabase
+
 ## Local Setup Instructions
 
-To set up the Bin Admin project locally, follow these steps:
+To set up the Taobin Admin project locally, follow these steps:
 
 1. Install project dependencies by running:
 
@@ -43,7 +51,7 @@ node dataGenerator.js
 
 ## Deployment Instructions
 
-To deploy the Bin Admin application, follow these steps:
+To deploy the Taobin Admin application, follow these steps:
 
 1. Build the project for production by running:
 
@@ -53,10 +61,10 @@ npm run build
 
 ## Note
 
--   Pre-requisite: Ensure your environment is properly configured for Node.js development, and that you have access to a Supabase project for database interactions.
+-   Pre-requisite: Ensure your environment is properly configured for Node.js development.
 
--   Non-Editable Fields: Some fields in the web admin console cannot be manually edited. They will be updated by an external system to maintain data accuracy.
+-   Non-Editable Fields: Some fields in the web admin console cannot be edited. They are planned to integrate with an external system to maintain data accuracy.
 
--   Authentication: Currently, Bin Admin lacks built-in authentication. Please use the console securely. Authentication features are in development for future releases.
+-   Authentication: Currently, it's a mock login page. No actual account is required.
 
--   Mock Data: Mock data is manually generated to help simulate system activity and assist in admin review.
+-   Mock Data: Mock data are manually generated to help simulate system activity and assist in admin review. This mock data can be uploaded to a database server, currently Supabase.
