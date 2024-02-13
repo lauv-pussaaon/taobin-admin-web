@@ -1,13 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import { getMachines } from "../../../services/getMachines";
+import { useSearchParams } from "react-router-dom";
 
 export function useMachines() {
-    const { isLoading, data } = useQuery({
-        queryFn: getMachines,
-        queryKey: ["machines"],
-    });
+    const [searchParams] = useSearchParams();
 
-    const machines = data?.data;
+    const page = searchParams.get("page")
+        ? Number(searchParams.get("page"))
+        : 1;
 
-    return { isLoading, machines };
+    const { isLoading, data: { data: machines, count: total } = {} } = useQuery(
+        {
+            queryFn: () => getMachines(page),
+            queryKey: ["machines", page],
+        }
+    );
+
+    console.log(total);
+    return { isLoading, machines, total };
 }

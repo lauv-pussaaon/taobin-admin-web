@@ -2,9 +2,10 @@ import { useMachines } from "./hooks/useMachines";
 import Spinner from "../../ui/components/Spinner";
 import Table from "../../ui/components/Table";
 import MachineRow from "./MachineRow";
+import Pagination from "../../ui/components/Pagination";
 
 function MachineList() {
-    const { isLoading, machines } = useMachines();
+    const { isLoading, machines, total } = useMachines();
 
     if (isLoading) return <Spinner />;
 
@@ -25,6 +26,10 @@ function MachineList() {
                     <MachineRow key={machine.id} machine={machine} />
                 )}
             />
+
+            <Table.Footer>
+                <Pagination total_rows={total} />
+            </Table.Footer>
         </Table>
     );
 }
