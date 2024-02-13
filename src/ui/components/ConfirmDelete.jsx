@@ -26,8 +26,8 @@ function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
             <Heading as="h2">Delete {resourceName}</Heading>
             <p>
                 Are you sure you want to delete this {resourceName} permanently?
-                This action cannot be undone.
             </p>
+            <p>* This action cannot be undone.</p>
 
             <div>
                 <Button
