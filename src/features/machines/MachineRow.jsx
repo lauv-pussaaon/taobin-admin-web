@@ -26,6 +26,7 @@ function MachineRow({ machine }) {
         lastCheckupDate,
         lowStockItems,
         outStockItems,
+        uptime,
     } = machine;
 
     return (
@@ -41,6 +42,7 @@ function MachineRow({ machine }) {
             <BasedColumn>
                 {lowStockItems} / {outStockItems}
             </BasedColumn>
+            <BasedColumn>{uptime.toFixed(1)}%</BasedColumn>
             <BasedColumn>
                 <Modal>
                     <Group type="horizontal-left">

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import StatSection from "./StatSection";
 import Spinner from "../../ui/components/Spinner";
 import SalesChart from "./SaleChart";
+import UptimeChart from "./UptimeChart";
 
 const StyledDashboardLayout = styled.div`
     display: grid;
@@ -25,6 +26,7 @@ function DashboardLayout() {
         <StyledDashboardLayout>
             <StatSection summaries={slicedSummaries} />
             <SalesChart summaries={slicedSummaries} />
+            <UptimeChart summaries={slicedSummaries} />
         </StyledDashboardLayout>
     );
 }

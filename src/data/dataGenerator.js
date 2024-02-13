@@ -50,6 +50,7 @@ async function mockMachines(numberOfMachines) {
                 }`,
                 city: thaiAreas.at(i)["CHANGWAT_E"],
                 country: "Thailand",
+                uptime: faker.number.float({ max: 100.0, min: 95 }),
             });
         });
         return machines;
@@ -89,6 +90,8 @@ function mockDailySummary(numberOfDays) {
                 max: issuesRaised,
                 min: 0.5 * issuesRaised,
             }),
+            averageUptime: faker.number.float({ max: 99.0, min: 97.5 }),
+            lowestUptime: faker.number.float({ max: 97.0, min: 95 }),
         });
     });
     return summary;

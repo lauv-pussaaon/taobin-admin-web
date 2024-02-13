@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import Heading from "../../ui/components/Heading";
 import {
     Area,
@@ -9,30 +8,7 @@ import {
     XAxis,
     YAxis,
 } from "recharts";
-
-const DashboardBox = styled.div`
-    /* Box */
-    background-color: var(--color-primary-100);
-    border: 1px solid var(--color-grey-100);
-    border-radius: var(--border-radius-md);
-    min-height: 400px;
-
-    padding: 3.2rem;
-
-    display: flex;
-    flex-direction: column;
-    gap: 2.4rem;
-`;
-
-const StyledSalesChart = styled(DashboardBox)`
-    grid-column: 1 / -1;
-
-    /* Hack to change grid line colors */
-    & .recharts-cartesian-grid-horizontal line,
-    & .recharts-cartesian-grid-vertical line {
-        stroke: var(--color-grey-300);
-    }
-`;
+import { ChartBox } from "./AreaChartStyle";
 
 function SalesChart({ summaries }) {
     const data = summaries.map((summary) => ({
@@ -43,20 +19,20 @@ function SalesChart({ summaries }) {
     const colors = {
         totalSales: {
             stroke: "var(--color-secondary-600)",
-            fill: "var(--color-secondary-400)",
+            fill: "var(--color-secondary-100)",
         },
         text: "#374151",
         background: "#fff",
     };
 
     return (
-        <StyledSalesChart>
+        <ChartBox>
             <Heading as="h2">
                 {summaries.length > 1 &&
-                    `Total Sales from ${data.at(-1).label} to ${
+                    `Total sales from ${data.at(-1).label} to ${
                         data.at(0).label
                     }`}
-                {summaries.length === 1 && `Total Sales on ${data.at(0).label}`}
+                {summaries.length === 1 && `Total sales on ${data.at(0).label}`}
             </Heading>
 
             <ResponsiveContainer
@@ -85,12 +61,12 @@ function SalesChart({ summaries }) {
                         stroke={colors.totalSales.stroke}
                         fill={colors.totalSales.fill}
                         strokeWidth={2}
-                        name="Total sales"
-                        unit="THB"
+                        name="Total Sales"
+                        unit=" (THB)"
                     />
                 </AreaChart>
             </ResponsiveContainer>
-        </StyledSalesChart>
+        </ChartBox>
     );
 }
 

@@ -11,13 +11,14 @@ function MachineList() {
 
     return (
         <>
-            <Table columnsWidth="2fr 1.2fr 1fr 1.6fr 1fr 8rem">
+            <Table columnsWidth="2fr 1.2fr 1fr 1.6fr 1fr 0.8fr 8rem">
                 <Table.Header>
                     <div>Name</div>
                     <div>Operation Hours</div>
                     <div>Status</div>
                     <div>Last Checkup</div>
                     <div>Low / Out Of Stock Items</div>
+                    <div>Uptime</div>
                     <div></div>
                 </Table.Header>
 
