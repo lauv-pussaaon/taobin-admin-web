@@ -1,4 +1,4 @@
-import { parseISO, format, parse } from "date-fns";
+import { parseISO, format, parse, subDays } from "date-fns";
 
 export const TIME_PATTERN = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
@@ -52,3 +52,9 @@ export function generateTimeOptions() {
     }
     return timeOptions;
 }
+
+export const getYesterday = function () {
+    const today = new Date();
+    const yesterday = subDays(today, 1);
+    return format(yesterday, "yyyy-MM-dd");
+};
