@@ -15,33 +15,39 @@ const StyledLink = styled(NavLink)`
         align-items: center;
         gap: 1.2rem;
 
-        color: var(--color-primary-200);
+        color: var(--color-secondary-200);
         font-size: 1.8rem;
         font-weight: 500;
         padding: 1.2rem 2.4rem;
         transition: all 0.3s;
     }
 
-    &:hover,
+    &:hover {
+        color: var(--color-grey-400);
+    }
+
     &:active,
     &.active:link,
     &.active:visited {
-        color: var(--color-primary-400);
+        color: var(--color-secondary-600);
         border-radius: var(--border-radius-sm);
     }
 
     & svg {
         width: 2.4rem;
         height: 2.4rem;
-        color: var(--color-grey-400);
+        color: var(--color-primary-200);
         transition: all 0.3s;
     }
 
-    &:hover svg,
+    &:hover svg {
+        color: var(--color-grey-400);
+    }
+
     &:active svg,
     &.active:link svg,
     &.active:visited svg {
-        color: var(--color-brand-600);
+        color: var(--color-secondary-600);
     }
 `;
 
