@@ -16,9 +16,21 @@ import {
     Error,
 } from "./CreateEditFormStyle";
 
-function EditMachineForm({ machine, onCloseModal }) {
+function EditMachineForm({
+    machine: {
+        id,
+        name,
+        status,
+        openTime,
+        closeTime,
+        installedDate,
+        address,
+        city,
+        country,
+    },
+    onCloseModal,
+}) {
     const { updateMachine, isUpdating } = useUpdateMachine();
-
     const {
         register,
         handleSubmit,
@@ -26,9 +38,15 @@ function EditMachineForm({ machine, onCloseModal }) {
         reset,
     } = useForm({
         defaultValues: {
-            ...machine,
-            openTime: formatTimeString(machine.openTime),
-            closeTime: formatTimeString(machine.closeTime),
+            id,
+            name,
+            status,
+            installedDate,
+            address,
+            city,
+            country,
+            openTime: formatTimeString(openTime),
+            closeTime: formatTimeString(closeTime),
         },
     });
 
