@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Table from "../../ui/components/Table";
+import { formatDateString, formatTimeString } from "../../utils/datetimeHelper";
 
 const BasedColumn = styled.div`
     font-size: 1.6rem;
@@ -22,10 +23,10 @@ function MachineRow({
         <Table.Row role="row">
             <BasedColumn>{name}</BasedColumn>
             <BasedColumn>
-                {openTime} - {closeTime}
+                {formatTimeString(openTime)} - {formatTimeString(closeTime)}
             </BasedColumn>
             <BasedColumn>{status}</BasedColumn>
-            <BasedColumn>{lastCheckupDate}</BasedColumn>
+            <BasedColumn>{formatDateString(lastCheckupDate)}</BasedColumn>
             <BasedColumn>
                 {lowStockItems} / {outStockItems}
             </BasedColumn>
