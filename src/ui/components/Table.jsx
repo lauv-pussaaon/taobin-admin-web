@@ -33,7 +33,7 @@ const StyledRow = styled(CommonRow)`
     padding: 1.2rem 2.4rem;
 
     &:not(:last-child) {
-        border-bottom: 1px solid var(--color-grey-300);
+        border-bottom: 1px solid var(--color-grey-100);
     }
 `;
 
@@ -89,12 +89,12 @@ function Row({ children }) {
     );
 }
 
-function Body({ data, children }) {
+function Body({ data, render }) {
     const { resourceName } = useContext(TableContext);
 
     if (data && data.length === 0)
         return <Empty>There is no {resourceName} at a moment.</Empty>;
-    return <StyledBody>{children}</StyledBody>;
+    return <StyledBody>{data.map(render)}</StyledBody>;
 }
 
 Table.Header = Header;

@@ -1,6 +1,7 @@
 import { useMachines } from "./hooks/useMachines";
 import Spinner from "../../ui/components/Spinner";
 import Table from "../../ui/components/Table";
+import MachineRow from "./MachineRow";
 
 function MachineList() {
     const { isLoading, machines } = useMachines();
@@ -14,26 +15,16 @@ function MachineList() {
                 <div>Operation Hours</div>
                 <div>Status</div>
                 <div>Last Checkup</div>
-                <div>Stock Level</div>
+                <div>Low / Out Of Stock Items</div>
                 <div></div>
             </Table.Header>
 
-            <Table.Body data={machines}>
-                {machines.map((machine) => (
-                    <Table.Row role="row" key={machine.id}>
-                        <div>{machine.name}</div>
-                        <div>
-                            {machine.openTime} - {machine.closeTime}
-                        </div>
-                        <div>{machine.status}</div>
-                        <div>{machine.lastCheckupDate}</div>
-                        <div>
-                            {machine.lowStockItems} / {machine.outStockItems}
-                        </div>
-                        <div></div>
-                    </Table.Row>
-                ))}
-            </Table.Body>
+            <Table.Body
+                data={machines}
+                render={(machine) => (
+                    <MachineRow key={machine.id} machine={machine} />
+                )}
+            />
         </Table>
     );
 }
