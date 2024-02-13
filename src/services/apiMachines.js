@@ -19,3 +19,18 @@ export async function getMachines(page) {
 
     return { data, count };
 }
+
+export async function createMachine(machine) {
+    const { data, error } = await supabase
+        .from("machines")
+        .insert([{ ...machine }])
+        .select()
+        .single();
+
+    if (error) {
+        console.error(error);
+        throw new Error("Failed to register new machine");
+    }
+
+    return { data };
+}

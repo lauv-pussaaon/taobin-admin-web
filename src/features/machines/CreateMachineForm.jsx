@@ -4,11 +4,12 @@ import {
 } from "../../utils/datetimeHelper";
 import { useForm } from "react-hook-form";
 import { DEFAULT_MACHINE_CONFIG } from "../../utils/constants";
+import { FaMugHot, FaTemperatureArrowDown } from "react-icons/fa6";
+import { useCreateMachine } from "./hooks/useCreateMachine";
 import styled, { css } from "styled-components";
 import Button from "../../ui/components/Button";
 import Heading from "../../ui/components/Heading";
 import Select from "../../ui/components/Select";
-import { FaMugHot, FaTemperatureArrowDown } from "react-icons/fa6";
 
 const Form = styled.form`
     width: 80rem;
@@ -81,17 +82,27 @@ const Error = styled.span`
 `;
 
 function CreateMachineForm({ onCloseModal }) {
+    const { createMachine, isCreating } = useCreateMachine();
+
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm({
         defaultValues: DEFAULT_MACHINE_CONFIG,
     });
 
     function onSubmit(data) {
-        console.log(data);
+        createMachine(data, {
+            onSuccess: () => {
+                reset();
+                onCloseModal?.();
+            },
+        });
     }
+
+    // const timeOptions = generateTimeOptions();
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -101,6 +112,7 @@ function CreateMachineForm({ onCloseModal }) {
                 <Input
                     type="text"
                     id="name"
+                    disabled={isCreating}
                     {...register("name", {
                         required: "This field is required.",
                     })}
@@ -109,11 +121,13 @@ function CreateMachineForm({ onCloseModal }) {
             </FormRow>
 
             <FormRow>
-                <Label htmlFor="status">Status</Label>
+                <Label htmlFor="status-active">Status</Label>
                 <InputWrapper>
                     <Input
                         type="radio"
+                        id="status-active"
                         value="active"
+                        disabled={isCreating}
                         {...register("status", {
                             required: "This field is required.",
                         })}
@@ -121,7 +135,9 @@ function CreateMachineForm({ onCloseModal }) {
                     <span>active</span>
                     <Input
                         type="radio"
+                        id="status-inactive"
                         value="in-active"
+                        disabled={isCreating}
                         {...register("status", {
                             required: "This field is required.",
                         })}
@@ -133,31 +149,51 @@ function CreateMachineForm({ onCloseModal }) {
                 )}
             </FormRow>
             <FormRow>
-                <Label htmlFor="status">Operation Hours</Label>
+                <Label htmlFor="openTime">Operation Hours</Label>
                 <InputWrapper>
                     <span>Open: </span>
-                    <Select
-                        options={generateTimeOptions()}
-                        onChange={() => {}}
+                    <Input
+                        type="text"
+                        id="openTime"
+                        disabled={isCreating}
+                        defaultValue="00:00"
+                        {...register("openTime", {
+                            required: "This field is required.",
+                        })}
                     />
+                    {/* <Select
+                        id="openTime"
+                        disabled={isCreating}
+                        options={timeOptions}
+                        {...register("openTime")}
+                    ></Select> */}
                     <span>Close: </span>
-                    <Select
-                        options={generateTimeOptions()}
-                        onChange={() => {}}
+                    <Input
+                        type="text"
+                        id="closeTime"
+                        disabled={isCreating}
+                        defaultValue="00:00"
+                        {...register("closeTime", {
+                            required: "This field is required.",
+                        })}
                     />
+                    {/* <Select
+                        id="closeTime"
+                        disabled={isCreating}
+                        options={timeOptions}
+                        {...register("closeTime")}
+                    ></Select> */}
                 </InputWrapper>
-                {errors?.openTime?.message && (
-                    <Error>{errors.openTime.message}</Error>
-                )}
             </FormRow>
             <FormRow>
-                <Label htmlFor="status">Cold Menu Temperature</Label>
+                <Label htmlFor="coldTemp">Cold Menu Temperature</Label>
                 <InputWrapper>
                     <FaTemperatureArrowDown />
                     <Input
                         type="text"
                         size="small"
                         id="coldTemp"
+                        disabled={isCreating}
                         {...register("coldTemp", {
                             required: "This field is required.",
                         })}
@@ -169,13 +205,14 @@ function CreateMachineForm({ onCloseModal }) {
                 )}
             </FormRow>
             <FormRow>
-                <Label htmlFor="status">Hot Menu Temperature</Label>
+                <Label htmlFor="hotTemp">Hot Menu Temperature</Label>
                 <InputWrapper>
                     <FaMugHot />
                     <Input
                         type="text"
                         size="small"
                         id="hotTemp"
+                        disabled={isCreating}
                         {...register("hotTemp", {
                             required: "This field is required.",
                         })}
@@ -187,10 +224,11 @@ function CreateMachineForm({ onCloseModal }) {
                 )}
             </FormRow>
             <FormRow>
-                <Label htmlFor="status">Installed Date</Label>
+                <Label htmlFor="installedDate">Installed Date</Label>
                 <Input
                     type="date"
                     id="installedDate"
+                    disabled={isCreating}
                     defaultValue={getTodayString()}
                     {...register("installedDate")}
                 ></Input>
@@ -200,10 +238,11 @@ function CreateMachineForm({ onCloseModal }) {
             </FormRow>
 
             <FormRow>
-                <Label htmlFor="status">Address</Label>
+                <Label htmlFor="address">Address</Label>
                 <Input
                     type="text"
                     id="address"
+                    disabled={isCreating}
                     {...register("address", {
                         required: "This field is required",
                     })}
@@ -214,10 +253,11 @@ function CreateMachineForm({ onCloseModal }) {
             </FormRow>
 
             <FormRow>
-                <Label htmlFor="status">City</Label>
+                <Label htmlFor="city">City</Label>
                 <Input
                     type="text"
                     id="city"
+                    disabled={isCreating}
                     defaultValue="Bangkok"
                     {...register("city", {
                         required: "This field is required",
@@ -226,10 +266,11 @@ function CreateMachineForm({ onCloseModal }) {
                 {errors?.city?.message && <Error>{errors.city.message}</Error>}
             </FormRow>
             <FormRow>
-                <Label htmlFor="status">Country</Label>
+                <Label htmlFor="country">Country</Label>
                 <Input
                     type="text"
                     id="country"
+                    disabled={isCreating}
                     defaultValue="Thailand"
                     {...register("country", {
                         required: "This field is required",
@@ -241,7 +282,6 @@ function CreateMachineForm({ onCloseModal }) {
             </FormRow>
 
             <FormRow>
-                {/* type is an HTML attribute! */}
                 <Button
                     variation="normal"
                     type="reset"
@@ -249,7 +289,7 @@ function CreateMachineForm({ onCloseModal }) {
                 >
                     Cancel
                 </Button>
-                <Button>Register Machine</Button>
+                <Button disabled={isCreating}>Register Machine</Button>
             </FormRow>
         </Form>
     );

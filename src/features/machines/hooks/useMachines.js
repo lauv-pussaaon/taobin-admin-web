@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMachines } from "../../../services/getMachines";
+import { getMachines } from "../../../services/apiMachines";
 import { useSearchParams } from "react-router-dom";
 
 export function useMachines() {
