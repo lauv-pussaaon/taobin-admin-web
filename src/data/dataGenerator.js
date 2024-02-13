@@ -2,6 +2,7 @@ import { faker } from "@faker-js/faker";
 import fs from "fs";
 import Papa from "papaparse";
 import { DEFAULT_MACHINE_CONFIG } from "../utils/constants.js";
+import { subDays, format } from "date-fns";
 
 const TOTAL_MACHINES = 1000;
 const PRODUCT_BASE_PRICE = 40;
@@ -13,6 +14,7 @@ async function mockMachines(numberOfMachines) {
         const thaiAreas = await loadThailandAreas();
         Array.from({ length: numberOfMachines }, (_, i) => {
             const id = i + 1;
+
             const lastDataDate = "2024-01-31T00:00:00.000Z";
             const installedDate = faker.date.between({
                 from: "2023-06-01T00:00:00.000Z",
@@ -23,6 +25,7 @@ async function mockMachines(numberOfMachines) {
                 to: lastDataDate,
             });
             const nextCheckupDate = faker.date.soon({ days: 21 });
+
             machines.push({
                 id: id,
                 name: `Machine ${thaiAreas.at(i)["TAMBON_E"]} (${i
@@ -57,18 +60,20 @@ async function mockMachines(numberOfMachines) {
 
 function mockDailySummary(numberOfDays) {
     let summary = [];
+    const today = new Date();
     Array.from({ length: numberOfDays }, (_, i) => {
         const totalItemsSold =
             faker.number.int({ max: 30, min: 10 }) * TOTAL_MACHINES;
+
         const issuesRaised = faker.number.int({
             max: 0.2 * TOTAL_MACHINES,
             min: 0.1 * TOTAL_MACHINES,
         });
+
+        const processedDate = subDays(today, i + 1);
+
         summary.push({
-            processedDate: faker.date
-                .recent({ days: i + 1 })
-                .toISOString()
-                .split("T")[0],
+            processedDate: format(processedDate, "yyyy-MM-dd"),
             totalSales: totalItemsSold * PRODUCT_BASE_PRICE,
             totalItemsSold: totalItemsSold,
             lowStockMachines: faker.number.int({
