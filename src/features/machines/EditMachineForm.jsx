@@ -1,7 +1,7 @@
 import {
-    getTodayString,
     formatTimeString,
     TIME_PATTERN,
+    formatDateString,
 } from "../../utils/datetimeHelper";
 import { useForm } from "react-hook-form";
 import { useUpdateMachine } from "./hooks/useUpdateMachine";
@@ -24,6 +24,8 @@ function EditMachineForm({
         openTime,
         closeTime,
         installedDate,
+        lastCheckupDate,
+        nextCheckupDate,
         address,
         city,
         country,
@@ -41,7 +43,9 @@ function EditMachineForm({
             id,
             name,
             status,
-            installedDate,
+            installedDate: formatDateString(installedDate, "yyyy-MM-dd"),
+            lastCheckupDate: formatDateString(lastCheckupDate, "yyyy-MM-dd"),
+            nextCheckupDate: formatDateString(nextCheckupDate, "yyyy-MM-dd"),
             address,
             city,
             country,
@@ -149,11 +153,34 @@ function EditMachineForm({
                     type="date"
                     id="installedDate"
                     disabled={isUpdating}
-                    defaultValue={getTodayString()}
                     {...register("installedDate")}
                 ></Input>
                 {errors?.installedDate?.message && (
                     <Error>{errors.installedDate.message}</Error>
+                )}
+            </FormRow>
+            <FormRow>
+                <Label htmlFor="lastCheckupDate">Last Checkup Date</Label>
+                <Input
+                    type="date"
+                    id="lastCheckupDate"
+                    disabled={isUpdating}
+                    {...register("lastCheckupDate")}
+                ></Input>
+                {errors?.lastCheckupDate?.message && (
+                    <Error>{errors.lastCheckupDate.message}</Error>
+                )}
+            </FormRow>
+            <FormRow>
+                <Label htmlFor="nextCheckupDate">Next Checkup Date</Label>
+                <Input
+                    type="date"
+                    id="nextCheckupDate"
+                    disabled={isUpdating}
+                    {...register("nextCheckupDate")}
+                ></Input>
+                {errors?.nextCheckupDate?.message && (
+                    <Error>{errors.nextCheckupDate.message}</Error>
                 )}
             </FormRow>
             <FormRow>
