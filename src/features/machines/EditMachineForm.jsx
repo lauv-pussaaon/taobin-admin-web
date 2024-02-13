@@ -3,6 +3,7 @@ import {
     TIME_PATTERN,
     formatDateString,
 } from "../../utils/datetimeHelper";
+import { REQUIRED_FIELD_RULE } from "../../utils/constants";
 import { useForm } from "react-hook-form";
 import { useUpdateMachine } from "./hooks/useUpdateMachine";
 import Button from "../../ui/components/Button";
@@ -73,9 +74,7 @@ function EditMachineForm({
                     id="name"
                     maxLength={100}
                     disabled={isUpdating}
-                    {...register("name", {
-                        required: "This field is required.",
-                    })}
+                    {...register("name", REQUIRED_FIELD_RULE)}
                 />
                 {errors?.name?.message && <Error>{errors.name.message}</Error>}
             </FormRow>
@@ -87,9 +86,7 @@ function EditMachineForm({
                         id="status-active"
                         value="active"
                         disabled={isUpdating}
-                        {...register("status", {
-                            required: "This field is required.",
-                        })}
+                        {...register("status", REQUIRED_FIELD_RULE)}
                     />
                     <span>active</span>
                     <Input
@@ -97,9 +94,7 @@ function EditMachineForm({
                         id="status-inactive"
                         value="inactive"
                         disabled={isUpdating}
-                        {...register("status", {
-                            required: "This field is required.",
-                        })}
+                        {...register("status", REQUIRED_FIELD_RULE)}
                     />
                     <span>inactive</span>
                 </InputWrapper>
@@ -117,7 +112,7 @@ function EditMachineForm({
                         disabled={isUpdating}
                         defaultValue="00:00"
                         {...register("openTime", {
-                            required: "This field is required.",
+                            ...REQUIRED_FIELD_RULE,
                             pattern: {
                                 value: TIME_PATTERN,
                                 message:
@@ -132,7 +127,7 @@ function EditMachineForm({
                         disabled={isUpdating}
                         defaultValue="00:00"
                         {...register("closeTime", {
-                            required: "This field is required.",
+                            ...REQUIRED_FIELD_RULE,
                             pattern: {
                                 value: TIME_PATTERN,
                                 message:
@@ -190,9 +185,7 @@ function EditMachineForm({
                     id="address"
                     maxLength={255}
                     disabled={isUpdating}
-                    {...register("address", {
-                        required: "This field is required",
-                    })}
+                    {...register("address", REQUIRED_FIELD_RULE)}
                 ></Input>
                 {errors?.address?.message && (
                     <Error>{errors.address.message}</Error>
@@ -205,9 +198,7 @@ function EditMachineForm({
                     id="city"
                     disabled={isUpdating}
                     defaultValue="Bangkok"
-                    {...register("city", {
-                        required: "This field is required",
-                    })}
+                    {...register("city", REQUIRED_FIELD_RULE)}
                 />
                 {errors?.city?.message && <Error>{errors.city.message}</Error>}
             </FormRow>
@@ -218,9 +209,7 @@ function EditMachineForm({
                     id="country"
                     disabled={isUpdating}
                     defaultValue="Thailand"
-                    {...register("country", {
-                        required: "This field is required",
-                    })}
+                    {...register("country", REQUIRED_FIELD_RULE)}
                 />
                 {errors?.country?.message && (
                     <Error>{errors.country.message}</Error>

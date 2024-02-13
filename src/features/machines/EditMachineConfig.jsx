@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { FaMugHot, FaTemperatureArrowDown } from "react-icons/fa6";
 import { useUpdateMachine } from "./hooks/useUpdateMachine";
+import { REQUIRED_FIELD_RULE } from "../../utils/constants";
 import Button from "../../ui/components/Button";
 import Heading from "../../ui/components/Heading";
 import Input from "../../ui/components/Input";
@@ -58,9 +59,7 @@ function EditMachineInfoForm({
                         size="small"
                         id="coldTemp"
                         disabled={isUpdating}
-                        {...register("coldTemp", {
-                            required: "This field is required.",
-                        })}
+                        {...register("coldTemp", REQUIRED_FIELD_RULE)}
                     />
                     <span>celcius</span>
                 </InputWrapper>
@@ -77,9 +76,7 @@ function EditMachineInfoForm({
                         size="small"
                         id="hotTemp"
                         disabled={isUpdating}
-                        {...register("hotTemp", {
-                            required: "This field is required.",
-                        })}
+                        {...register("hotTemp", REQUIRED_FIELD_RULE)}
                     />
                     <span>celcius</span>
                 </InputWrapper>
@@ -94,9 +91,7 @@ function EditMachineInfoForm({
                         type="range"
                         id="stockThreshold"
                         disabled={isUpdating}
-                        {...register("stockThreshold", {
-                            required: "This field is required.",
-                        })}
+                        {...register("stockThreshold", REQUIRED_FIELD_RULE)}
                     />
                     <span>{stockThresholdValue}</span>
                 </InputWrapper>

@@ -1,4 +1,5 @@
 import { getTodayString, TIME_PATTERN } from "../../utils/datetimeHelper";
+import { REQUIRED_FIELD_RULE } from "../../utils/constants";
 import { useForm } from "react-hook-form";
 import { DEFAULT_MACHINE_CONFIG } from "../../utils/constants";
 import { useCreateMachine } from "./hooks/useCreateMachine";
@@ -44,9 +45,7 @@ function CreateMachineForm({ onCloseModal }) {
                     id="name"
                     maxLength={100}
                     disabled={isCreating}
-                    {...register("name", {
-                        required: "This field is required.",
-                    })}
+                    {...register("name", REQUIRED_FIELD_RULE)}
                 />
                 {errors?.name?.message && <Error>{errors.name.message}</Error>}
             </FormRow>
@@ -58,9 +57,7 @@ function CreateMachineForm({ onCloseModal }) {
                         id="status-active"
                         value="active"
                         disabled={isCreating}
-                        {...register("status", {
-                            required: "This field is required.",
-                        })}
+                        {...register("status", REQUIRED_FIELD_RULE)}
                     />
                     <span>active</span>
                     <Input
@@ -68,9 +65,7 @@ function CreateMachineForm({ onCloseModal }) {
                         id="status-inactive"
                         value="inactive"
                         disabled={isCreating}
-                        {...register("status", {
-                            required: "This field is required.",
-                        })}
+                        {...register("status", REQUIRED_FIELD_RULE)}
                     />
                     <span>inactive</span>
                 </InputWrapper>
@@ -88,7 +83,7 @@ function CreateMachineForm({ onCloseModal }) {
                         disabled={isCreating}
                         defaultValue="00:00"
                         {...register("openTime", {
-                            required: "This field is required.",
+                            ...REQUIRED_FIELD_RULE,
                             pattern: {
                                 value: TIME_PATTERN,
                                 message:
@@ -103,7 +98,7 @@ function CreateMachineForm({ onCloseModal }) {
                         disabled={isCreating}
                         defaultValue="00:00"
                         {...register("closeTime", {
-                            required: "This field is required.",
+                            ...REQUIRED_FIELD_RULE,
                             pattern: {
                                 value: TIME_PATTERN,
                                 message:
@@ -138,9 +133,7 @@ function CreateMachineForm({ onCloseModal }) {
                     id="address"
                     maxLength={255}
                     disabled={isCreating}
-                    {...register("address", {
-                        required: "This field is required",
-                    })}
+                    {...register("address", REQUIRED_FIELD_RULE)}
                 ></Input>
                 {errors?.address?.message && (
                     <Error>{errors.address.message}</Error>
@@ -153,9 +146,7 @@ function CreateMachineForm({ onCloseModal }) {
                     id="city"
                     disabled={isCreating}
                     defaultValue="Bangkok"
-                    {...register("city", {
-                        required: "This field is required",
-                    })}
+                    {...register("city", REQUIRED_FIELD_RULE)}
                 />
                 {errors?.city?.message && <Error>{errors.city.message}</Error>}
             </FormRow>
@@ -166,9 +157,7 @@ function CreateMachineForm({ onCloseModal }) {
                     id="country"
                     disabled={isCreating}
                     defaultValue="Thailand"
-                    {...register("country", {
-                        required: "This field is required",
-                    })}
+                    {...register("country", REQUIRED_FIELD_RULE)}
                 />
                 {errors?.country?.message && (
                     <Error>{errors.country.message}</Error>
